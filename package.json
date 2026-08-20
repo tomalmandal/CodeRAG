@@ -1,0 +1,23 @@
+{
+  "name": "coderag",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "tsx src/cli.ts",
+    "ingest": "tsx src/cli.ts ingest ./sample-repo",
+    "ask": "tsx src/cli.ts ask",
+    "evaluate": "tsx src/eval/run.ts",
+    "typecheck": "tsc --noEmit"
+  },
+  "dependencies": {
+    "@elastic/elasticsearch": "^8.19.0",
+    "dotenv": "^17.4.2",
+    "openai": "^5.12.0",
+    "zod": "^4.0.0"
+  },
+  "devDependencies": {
+    "@types/node": "^24.0.0",
+    "tsx": "^4.20.0",
+    "typescript": "^5.9.0"
+  }
+}

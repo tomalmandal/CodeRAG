@@ -1,0 +1,2 @@
+import fs from "node:fs/promises"; import {retrieve} from "../retrieval/search.js";
+const cases=JSON.parse(await fs.readFile(new URL("../../eval/golden.json",import.meta.url),"utf8")) as {question:string;expectedPath:string}[];let pass=0;for(const c of cases){const docs=await retrieve(c.question);const ok=docs.some(d=>d.path===c.expectedPath);console.log(`${ok?"PASS":"FAIL"} ${c.question} -> ${docs[0]?.path||"none"}`);if(ok)pass++}const rate=pass/cases.length;console.log(`retrieval@5=${rate.toFixed(2)}`);if(rate<0.6)process.exit(1);

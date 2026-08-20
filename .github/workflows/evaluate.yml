@@ -1,0 +1,13 @@
+name: RAG Regression
+on: [push,pull_request]
+jobs:
+  evaluate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with: {node-version: 22}
+      - run: npm ci
+      - run: npm run typecheck
+      # Full RAG evaluation requires Elasticsearch + OPENAI_API_KEY in CI secrets.
+      # The workflow is intentionally explicit rather than silently using a fake model.
